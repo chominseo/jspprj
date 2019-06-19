@@ -1,4 +1,4 @@
-package com.newlecture.web.controller.notice;
+package com.newlecture.web.controller.admin.notice;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import javax.swing.RepaintManager;
 import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.dao.oracle.OracleNoticeDao;
 
-@WebServlet("/notice/del")
+@WebServlet("/admin/notice/del")
 public class DelController extends HttpServlet {
 	
 	@Override

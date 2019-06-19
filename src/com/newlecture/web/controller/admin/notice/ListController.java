@@ -1,11 +1,10 @@
-package com.newlecture.web.controller.notice;
+package com.newlecture.web.controller.admin.notice;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +13,7 @@ import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.dao.oracle.OracleNoticeDao;
 import com.newlecture.web.entity.Notice;
 
-@WebServlet("/notice/list")
+@WebServlet("/admin/notice/list")
 public class ListController extends HttpServlet {
 	
 	@Override
@@ -32,24 +31,6 @@ public class ListController extends HttpServlet {
 //			page = Integer.parseInt(request.getParameter("p"));
 		
 		NoticeDao noticeDao = new OracleNoticeDao();
-//		
-//		int count = 0;
-//		
-//		Cookie[] cookies = request.getCookies();
-//		for(int i = 0; i<cookies.length; i++)
-//			if(cookies[i].getName().equals("count")) {
-//				count=Integer.parseInt(cookies[i].getValue());
-//				
-//				System.out.println("cookie name : " + cookies[i].getName() + ",value:" + cookies[i].getValue());
-//				
-//				count++;
-//				break;
-//			}
-//		
-//		Cookie cookie = new Cookie("count", String.valueOf(count));
-//		cookie.setMaxAge(1000*60*60*24*30);
-//		cookie.setPath("/member/");
-//		response.addCookie(cookie);
 		
 		try {
 			request.setAttribute("list", noticeDao.getList(page));
@@ -65,4 +46,28 @@ public class ListController extends HttpServlet {
 		request.getRequestDispatcher("../WEB-INF/view/notice/list.jsp").forward(request, response);
 	}
 	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String title = request.getParameter("title");
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		
+		NoticeDao noticeDao = new OracleNoticeDao();
+		
+		Notice notice;
+		try {
+			notice = noticeDao.get(id);
+			notice.setTitle(title);
+			
+			noticeDao.update(notice);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		response.sendRedirect("list");
+	}
 }

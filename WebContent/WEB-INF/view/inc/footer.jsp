@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 	<footer id="footer">
-		<div class="content-box1">
+		<div class="content-box">
 			<!-- <section>
             <h1>회사정보</h1>
 

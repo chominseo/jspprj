@@ -1,4 +1,4 @@
-<%@page import="com.newlecture.web.dao.file.FileNoticeDao"%>
+
 <%-- <%@page import="com.newlecture.web.dao.NoiceDao"%> --%>
 <%@page import="java.util.Scanner"%>
 <%@page import="com.newlecture.web.entity.Notice"%>
@@ -83,6 +83,14 @@
                     			<tr>
                     				<th>작성일</th>
                     				<td>${notice.regDate}</td>
+                    			</tr>
+                    			<tr>
+                    				<th>첨부파일</th>
+                    				<td>
+                    				<c:forEach var="file" items="${noticeFiles}">
+                    				<a href="/upload/${file.name}" download>${file.name}</a>
+                    				</c:forEach>
+                    				</td>
                     			</tr>
                     			<tr>
                     				<th>내용</th>

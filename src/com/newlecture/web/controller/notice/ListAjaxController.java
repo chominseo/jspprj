@@ -1,7 +1,9 @@
 package com.newlecture.web.controller.notice;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,14 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.newlecture.web.dao.NoticeDao;
+import com.newlecture.web.dao.oracle.NoticeView;
 import com.newlecture.web.dao.oracle.OracleNoticeDao;
 import com.newlecture.web.entity.Notice;
 
-@WebServlet("/notice/list")
-public class ListController extends HttpServlet {
+@WebServlet("/notice/list-ajax")
+public class ListAjaxController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		
 		int page = 1;
 		
@@ -26,13 +31,8 @@ public class ListController extends HttpServlet {
 		if(p_!=null && !p_.equals(""))
 			page = Integer.parseInt(p_);
 
-//		Áö¿¬ÀÌ ÄÚµå
-//		int page = 1;
-//		if(!request.getParameter("p").isEmpty())
-//			page = Integer.parseInt(request.getParameter("p"));
-		
 		NoticeDao noticeDao = new OracleNoticeDao();
-//		
+		List<NoticeView> list = null;
 //		int count = 0;
 //		
 //		Cookie[] cookies = request.getCookies();
@@ -50,9 +50,9 @@ public class ListController extends HttpServlet {
 //		cookie.setMaxAge(1000*60*60*24*30);
 //		cookie.setPath("/member/");
 //		response.addCookie(cookie);
-		
+//		
 		try {
-			request.setAttribute("list", noticeDao.getList(page));
+			list = noticeDao.getList(page);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,8 +61,59 @@ public class ListController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/txt;charset=utf-8");//json ÄÁÅÙÃ÷Å¸ÀÔ
+		PrintWriter out = response.getWriter();
 		
-		request.getRequestDispatcher("../WEB-INF/view/notice/list.jsp").forward(request, response);
+		StringBuilder json = new StringBuilder();
+		json.append("[");
+		
+		for(int i=0; i<list.size(); i++) {
+			Notice nv = list.get(i);
+			
+			json.append(String.format("{\"id\":%d,",nv.getId()));
+			json.append(String.format("\"title\":\"%s\",",nv.getTitle()));
+			json.append(String.format("\"writerId\":\"%s\",",nv.getWriterId()));
+			json.append(String.format("\"regDate\":\"%s\",",nv.getRegDate()));
+			json.append(String.format("\"hit\":%d}",nv.getHit()));
+			
+			if(i<list.size()-1)
+				json.append(",");
+		
+		}
+		
+		json.append("]");
+		
+		out.write(json.toString());
+		/*
+		String json = "[";
+		
+		int count = list.size();
+		int idx = 0;
+		
+		for(NoticeView nv : list) {
+			
+		String js = "{"
+				+ "\"id\":"+nv.getId()+","
+				+ "\"title\":\""+nv.getTitle()+"\","
+				+ "\"writerId\":\""+nv.getWriterId()+"\","
+				+ "\"regDate\":\""+nv.getRegDate()+"\","
+				+ "\"hit\":\""+nv.getHit()+"\","
+				+"}";
+					
+			if(idx < count-1)
+				js += ",";
+			
+			idx++;
+			json += js;	
+			
+		}
+		
+		json += "]";
+		
+		out.write(json);
+		*/
+		
 	}
 	
 }

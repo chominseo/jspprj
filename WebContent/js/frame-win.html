@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        window.addEventListener("load", function(){
+            var ex3Button = document.getElementById("btn-ex3");
+
+            ex3Button.onclick = function(){
+                var ex3Button = parent.document.getElementById("btn-ex3");
+
+                ex3Button.value = "꿀꿀꿀";
+            }
+        });
+    </script>
+</head>
+<body>
+    <input id="btn-ex3" type="button" value="클릭">
+</body>
+</html>

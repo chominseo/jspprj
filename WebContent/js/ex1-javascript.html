@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="ex1-javascript.js"></script>
+
+<script>
+		/*var html = "<h1>안녕하세요</h1>";
+		document.write(html);
+		hi.innerText = html;
+		
+		window.onload = function(){
+			var btnPrint = document.getElementById("btn-print");
+			btnPrint.onclick = printResult;
+
+			function printResult(){
+			//var btnPrint = document.getElementById("btn-print");
+			var x,y;
+			x = prompt("x 값을 입력하세요",0);
+			y = prompt("y 값을 입력하세요",0);
+			x = parseInt(x);
+			y = parseInt(y);
+			btnPrint.value=x+y;
+			}
+
+		}*/
+
+		
+
+
+	
+</script>
+
+
+
+</head>
+<body>
+	<!-- 애니메이션 -->
+	<section id="ex9">
+		<style>
+			.stage{
+				width: 700px;
+				height: 500px;
+				border: 1px solid gray;
+				position: relative;
+			}
+			.ball{
+				left: 0px;
+				top: 0px;
+				width: 100px;
+				height: 100px;
+				border: 1px solid blue;
+				--border-radius: 50px;
+				position: absolute;
+				transform: rotate(0deg);
+				transition: 1s ;
+			}
+			.note{
+				width: 100px;
+				height: 150px;
+				border: 1px solid #e9e9e9;
+				box-shadow: 1px 1px 1px #999;
+				position: relative;
+			}
+			.note .content{
+				width: 100%;
+				height: 100%;
+				background: yellow;
+			}
+			.note .cover{
+				width: 100%;
+				height: 100%;
+				background: pink;
+				position: absolute;
+				top: 0px;
+
+				transform: rotate(0deg);
+				transform-origin: left top;
+				transition: 500ms;
+			}
+			.note:hover .cover{
+				transform: rotate(0deg);
+				transform-origin: top;
+				top: -100px;
+				transition: 500ms;
+				transition-timing-function: steps(3, start);
+			}
+		</style>
+		<div>
+		<input class="start" type="button" value="시작">	
+		<input class="pause" type="button" value="정지">
+		</div>
+		<div class="note-list">
+			<div class="note">
+				<div class="content">
+					노트
+				</div>
+				<div class="cover">
+					커버
+				</div>
+			</div>
+		</div>
+		<div class="stage">
+			<div class="ball"></div>
+		</div>
+	</section>
+	<!-- 트리거 -->
+	<section id="ex8">
+
+		<input type="file" name="file" style="display: none">
+		<input type="button" value="파일선택">
+		
+	</section>
+	<!-- 공지사항 조작하기 -->
+	<section id="ex7">
+		<div>
+			<input class="btn-load" type="button" value="로드">
+		</div>
+		
+		<table class="notice" border="1">
+			<thead>
+				<tr>
+					<td>번호</td>
+					<td>제목</td>
+					<td>작성자</td>
+					<td>작성일</td>
+					<td>조회수</td>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</section>
+	<ul>
+		<li>
+			<section>
+				<h1>자바 프로그래밍이란?</h1>
+				<div></div>
+				<div></div>
+			</section>
+		</li>
+		<li>
+			<section></section>
+		</li>
+	</ul>
+	
+
+
+	<!-- 노드 조작하기 -->
+	<section id="ex6">
+		<style>
+			#ex6 .box{
+				width: 100px;
+				height: 100px;
+				border: 1px solid blue;
+			}
+		</style>
+		<div>
+			<input class="btn-add-text" type="button" value="텍스트 추가">
+			<input class="btn-add-elment" type="button" value="엘리먼트추가">
+		</div>
+		
+		<div class="container">
+
+		</div>
+
+	</section>
+
+
+	<!-- 속성다루기 -->
+	<section id="ex5">
+		<select class="img-select">
+			<option value="https://cdn.pixabay.com/photo/2018/06/01/20/38/country-road-3447111_960_720.jpg">이미지1</option>
+			<option value="https://t1.kakaocdn.net/friends/kfo-common/pcrtn/brand/brand_wearefriends1_171130.jpg">이미지2</option>
+			<option value="https://i.ytimg.com/vi/XQTfuoGax4g/maxresdefault.jpg">이미지2</option>
+		</select>
+		<input class="btn3" type="button" value="변경">
+		<br>
+		<img src="">
+		<br>
+		<input class="btn1" type="button" value="적용">
+		<input class="btn2" type="button" value="스타일적용">
+		<br>
+		<!-- <img src=""> -->
+	</section>
+	<!-- 노드를 선택할 수 있느냐 -->
+	<section id="ex4">
+		<input type="button" value="클릭">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</section>
+
+	<section id="ex3">
+		<style>
+			#ex3 .view{
+				width: 500px;
+				height: 300px;
+				border: 1px solid red;
+			}
+		</style>
+		<div>
+			<div>
+				hello
+				hi      ok
+			</div>
+			<pre>
+				hello
+				hi      ok
+			</pre>
+			<![CDATA[
+				<학습목표> &*%(*^(*^&*^&))
+			]]>
+			<input id="btn-ex3" type="button" value="클릭">
+		</div>
+		<iframe class="view" id="view" src="frame-win.html"></iframe>
+		
+	</section>
+
+	<section id="ex2">
+		<div>
+				남은시간 <span id="count-span">60</span>초
+				<input id="countdown-button" type="button" value="카운트 시작"/>
+		</div>
+	</section>
+
+	<section id="ex1">a&lt;b 
+		<!-- <h1 id="hi" onclick="alert('hello');"></h1> -->
+		<!-- lt=엔티티 &; 엔티티 레퍼런스 -->
+		<input type="text" id="x-input" >+<input type="text" id="y-input">
+		<input type="button" value="계산하기" id="btn-result"/>
+	</section>
+
+	<script>
+		/* var x = 'aa';
+		var x = new Number(3);
+		var y = new Number(3);
+
+		alert(x == undefined);
+		alert(x.length);
+		var nums = new Array();
+		
+		nums.push(5);
+		alert(nums);
+
+		nums.push(10);
+		alert(nums);
+
+		nums.push(21);
+		alert(nums);
+
+		var n1 = nums.pop();
+		alert(nums);
+
+		var n2 = nums.pop();
+		alert(nums);
+
+		var n3 = nums.pop();
+		alert(nums);
+
+		var nums = new Array();
+		
+		nums[0] = 5;
+		alert(nums);
+
+		nums[1] = 10;
+		alert(nums);
+
+		nums[2] = 21;
+		alert(nums); 
+
+		var nums = new Array(5);
+		alert(nums);
+
+		var nums = new Array(5,10,21,"hello");
+		alert(nums);
+
+		var nums = new Array(5,10,21,"hello",new Array(2,3,4));
+		
+		alert(nums[4][1]);
+
+		var nums = new Array(5,10,21,"hello");
+
+		nums.splice(1,0,23);//2번째 자리 1은 바꿔끼기
+		alert(nums);
+
+		var exam = new Object();
+		//exam["kor"] = 30;
+		exam.kor = 30;
+		exam["reg date"] = 20;
+
+		alert(exam["reg date"]);
+
+		var colName = "eng";
+
+		var exam = new Object();
+		exam.kor=30;
+		exam.eng=40;
+		exam.math=50;
+
+		alert(exam[colName]);
+
+		var exam = {"kor":30,"eng":40,"math":50};
+		alert(exam.eng);
+
+		var exams = [
+						{"kor":10,"eng":20,"math":25},
+						{"kor":30,"eng":40,"math":50}
+					];
+
+					alert(exams[0].eng);
+			
+		var kor = 1;
+		var eng = 2, math = 3;
+
+		var sum = eval("kor+eng+math");
+
+		alert(sum);
+		
+
+		var date = ("({\"kor\":30,\"eng\":40,\"math\":50})");
+		alert(data.kor);
+
+		var declare = "var kor = 1; var eng = 2, math = 3;";
+		eval(declare);
+		var sum = eval("kor+eng+math");
+		
+		alert(sum);
+		
+		1. 값(데이터),
+		2. 연산자,
+		3. 제어구조,
+		4. 배열,
+		5. 모듈화(함수-구조적인, 캡슐-객체지향)
+		6. 컬렉션
+		7. 스트림 API
+		
+
+		var json = "{\"kor\":30,\"eng\":40,\"math\":50}";
+		var data = JSON.parse(json);
+
+		alert(data.kor);
+
+		var data = {kor:30,eng:40,math:50};
+		var json = JSON.stringify(data);
+		alert(json);
+
+		var name = "newlec";
+		var name = new String("newlec");
+
+		if (name !== "newlec")
+			alert("같습니다.");
+
+		var ar = ["철수","영희","맹구","동천"];
+
+		
+		for(var i=0; i<4; i++)
+		alert(ar[i]);
+
+		for(i in ar)
+		alert(ar[i]);
+
+		for(var i in ar)
+		alert(ar[i]);
+
+		var ar = ["철수","영희","맹구","동천"];
+		for(i in ar)
+			console.log(ar[i]);
+		
+		var ar = {"kor":30,"eng":40,"math":50};
+		for(var k in ar)
+			console.log(ar[k]);
+
+		var add = new Function("x,y", "return x+y");
+		alert(add(3,4));//이렇게 써야대
+
+		var add = function (x,y){return x+y};
+		alert(add(3,4));//뻘짓
+
+		function add( x, y){return x+y};
+		alert(add(3,5));//최악
+
+		function add(x,y){return x+y};
+		alert(add(3,4,5,6));
+
+		function add(x,y)
+		{
+			return arguments[0]+arguments[1];
+		};
+		var sum = add(2,3);
+
+		var sum = function() {
+			//var x = arguments[0];
+			//var x = arguments[1];
+			//return x+y;
+			var sum = 0;
+			for(var i=0; i<arguments.length; i++)
+				sum += arguments[i];
+			return sum;
+		};
+
+		var cal = function(x, y, aa){
+			return aa(x, y);
+		}
+		console.log(cal(3,4,sum));
+
+		alert(cal(3,4,sum));
+
+		var a = 1;
+		alert(a);
+
+		a = 1;
+		alert(window.a);//window는 전역객체
+
+		var a = 3;
+		console.log(window.a);
+
+		var f1 = function(){
+			a=1;
+
+			var a = 3;
+			a++;
+			alert(a);
+		}
+		f1();
+
+		var f1 = function(){
+			a=1;
+
+			var a;
+			a++;
+			
+			//alert(a);
+			alert(window.a);
+		}
+		f1();
+
+		var a = 1;
+		var a = 2;
+		alert(a);//오류 안남
+
+		{
+			var a = 1;
+		}
+
+		alert(a);
+
+		function f1(){
+			var x = 2;
+		
+			function f2(){
+				var x = 1;
+				console.log(x);
+			}
+			f2();
+		}
+		f1();
+
+		var x,y;
+			x = prompt("x 값을 입력하세요",0);
+			x = parseInt(x);
+			y = prompt("y 값을 입력하세요",0);
+			y = parseInt(y);
+			var sum = x+y;
+
+			if(isNaN(sum))
+				alert("입력 값이 유효하지 않습니다.");
+
+			console.log(parseInt("a123"));   
+			console.log(parseInt("123a"));*/
+
+		
+
+
+	
+		
+
+	</script>
+	
+</body>
+</html>

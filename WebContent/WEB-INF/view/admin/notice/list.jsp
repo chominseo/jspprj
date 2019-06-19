@@ -18,20 +18,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Document</title>
 
-<link href="../css/style2.css" type="text/css" rel="stylesheet">
+<link href="../css/style.css" type="text/css" rel="stylesheet">
 <style>
-#footer { 
-	-width: 100px;
-}
+#footer{width:100px;}
 </style>
-<script src="../../js/notice/list.js"></script>
 </head>
 
 
 
 <body>
 	<!--header block ----------------------------------------------------------------------------------------------------------------- -->
-	<jsp:include page="../inc/header.jsp" />
+	<jsp:include page="../../inc/header.jsp" />
 	<!--visual block ----------------------------------------------------------------------------------------------------------------- -->
 
 	<div id="visual">
@@ -43,9 +40,9 @@
 	<!-- flexible box layout: 반응형 사용을 위해 존재.수직이든 수평이든 뭐를 둬도 알아서 배치. static은 수직으로 알아서 배치하지만 수평은 안해쥼 axis(중심선) -->
 	<div id="body">
 		<div class="content-box">
-			<jsp:include page="../inc/aside.jsp" />
+			<jsp:include page="../../inc/aside.jsp" />
 
-			<main>
+		<main>
 			<section>
 				<h1>공지사항</h1>
 
@@ -70,23 +67,8 @@
 				</section>
 
 				<section id="notice">
-					<style>
-						.even {
-							background: beige
-						}
-					</style>
 					<h1 class="d-none">공지사항 목록</h1>
-					<template class="notice-template">
-					<tr>
-						<td class="num"></td>
-						<td class="title"><a href="detail?id="></a>
-						<span class="commentCount"></span></td>
-						<td class="writerId"></td>
-						<td class="regDate"></td>
-						<td class="hit"></td>
-					</tr>
-					</template>
-
+					<form method="post">
 					<table>
 						<thead>
 							<tr>
@@ -97,26 +79,40 @@
 								<td class="hit">조회수</td>
 							</tr>
 						</thead>
-						<tbody class="tbody">
-
-							<c:forEach var="n" items="${list}" varStatus="s">
-								<c:if test="${s.index %2 == 1}">
-									<tr class="even">
-								</c:if>
-								<c:if test="${s.index %2 == 0}">
-									<tr>
-								</c:if>
-								<td class="num">${n.id}</td>
-								<td class="title"><a href="detail?id=${n.id}">${s.index}/${s.current.title}
-										: ${n.title}</a> <span class="commentCount">${n.commentCount}</span>
-								<td class="writerId">${n.writerId}</td>
-								<td class="regDate">${n.regDate}</td>
-								<td class="hit">${n.hit}</td>
+						<tbody>
+							<c:forEach var="n" items="${list}">
+							<c:if test="${param.eid == n.id}">
+								<tr>
+									<td class="num">${n.id}</td>
+									<td class="title">
+									
+										<input type="text" name="title" value="${n.title}">
+										<span class="commentCount">${n.commentCount}</span>
+										<input type="hidden" name="id" value="${n.id}">
+										<span><input type="submit" value="저장"></span>
+									
+									</td>
+									<td class="writerId">${n.writerId}</td>
+									<td class="regDate">${n.regDate}</td>
+									<td class="hit">${n.hit}</td>
 								</tr>
+								</c:if>
+								<c:if test="${param.id != n.id}">
+								<tr>
+									<td class="num">${n.id}</td>
+									<td class="title">
+									<a href="detail?id=${n.id}">${n.title}</a>
+										<span class="commentCount">${n.commentCount}</span>
+										<span><a href="list?eid=${n.id}">수정</a><a href="">삭제</a></span></td>
+									<td class="writerId">${n.writerId}</td>
+									<td class="regDate">${n.regDate}</td>
+									<td class="hit">${n.hit}</td>
+								</tr>
+								</c:if>
 							</c:forEach>
 						</tbody>
 					</table>
-
+					</form>
 					<div>
 						<a href="reg">글쓰기</a>
 					</div>
@@ -129,43 +125,22 @@
 					</div>
 				</section>
 
-				<div id="test-remove">
-					<label>삭제할 게시글 ID</label><input type="text" value="">
-					<input type="button" value="삭제">
-				</div>
-				
-				<div id="test-pager">
-					<input type="text">
-					<input type="button" value="요청">
-				</div>
-
-				<c:set var="page" value="${(empty param.p) ? 1 : param.p}"></c:set>
-				<c:set var="start" value="${page-(page-1)%5}"></c:set>
-				<c:set var="last" value="" />
-
 				<section id="pager">
-					<h1 class="d-none">페이저</h1>
+					<h1 class="d-none">페이지</h1>
 					<div>
-
-						<div class="icon-next">
-							<a href="list?p=${(start == 1) ? 1 : start-1}">이전</a>
-						</div>
+						<div class="icon-next">이전</div>
 						<ul>
-							<!-- <li class="current"><a href="list?p=1">1</a></li> -->
-
-							<c:forEach var="n" begin="${start}" end="${start+4}"
-								varStatus="s">
-								<li><a href="list?p=${n}">${n}</a></li>
-							</c:forEach>
-
+							<li class="current"><a href="list?p=1">1</a></li>
+							<li><a href="list?p=2">2</a></li>
+							<li><a href="list?p=3">3</a></li>
+							<li><a href="list?p=4">4</a></li>
+							<li><a href="list?p=5">5</a></li>
 						</ul>
-						<div class="icon-next-pager">
-							<a href="${start+5}">다음</a>
-						</div>
+						<div class="icon-next-pager">다음</div>
 					</div>
 				</section>
 			</section>
-			</main>
+		</main>
 
 		</div>
 	</div>
@@ -175,7 +150,7 @@
 
 	<!--footer      block ----------------------------------------------------------------------------------------------------------------- -->
 
-	<jsp:include page="../inc/footer.jsp" />
+	<jsp:include page="../../inc/footer.jsp" />
 
 
 

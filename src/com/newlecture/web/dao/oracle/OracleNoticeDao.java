@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.newlecture.web.dao.NoticeDao;
@@ -49,7 +48,12 @@ public class OracleNoticeDao implements NoticeDao {
 		st.setInt(2, start);
 		st.setInt(3, end);
 		
+		//con.setAutoCommit(false);
+		
 		ResultSet rs = st.executeQuery();
+		
+		
+		//con.commit();
 		
 		while(rs.next()) {
 		NoticeView notice = new NoticeView(
@@ -61,7 +65,7 @@ public class OracleNoticeDao implements NoticeDao {
 				rs.getInt("hit"),
 				rs.getInt("comment_count")
 				);
-			list.add(notice);			
+			list.add(notice);		
 		}
 
 		rs.close();
@@ -241,6 +245,66 @@ public class OracleNoticeDao implements NoticeDao {
 		con.close();
 		
 		return result;
+	}
+
+
+	@Override
+	public int getLastId() throws ClassNotFoundException, SQLException {
+		int id = -1;
+		
+		String sql = "SELECT ID FROM "
+				+ "(SELECT * FROM NOTICE ORDER BY REGDATE DESC)"
+				+ "WHERE ROWNUM = 1";
+		
+		String url = "jdbc:oracle:thin:@192.168.0.15:1521/xepdb1";
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url,"\"newlec\"","l4class");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		if(rs.next()) {
+			id = rs.getInt("id");
+		}
+
+		rs.close();
+		st.close();
+		con.close();
+		
+		return id;
+	}
+
+
+	@Override
+	public int getCount(String field, String query) throws ClassNotFoundException, SQLException {
+		
+		int count = 0;
+		
+		String sql = "SELECT COUNT(ID) COUNT FROM NOTICE WHERE "+field+" LIKE ?";
+		
+		String url = "jdbc:oracle:thin:@192.168.0.15:1521/xepdb1";
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection(url,"\"newlec\"","l4class");
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, "%"+query+"%");
+		
+		ResultSet rs = st.executeQuery();
+		
+		if(rs.next()) {
+			count = rs.getInt("count");
+		}
+		
+		rs.close();
+		st.close();
+		con.close();
+		
+		return count;
+	}
+
+
+	@Override
+	public int getCount() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return getCount("title","");
 	}
 
 }

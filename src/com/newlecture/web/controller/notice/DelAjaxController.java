@@ -1,6 +1,7 @@
 package com.newlecture.web.controller.notice;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -8,39 +9,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.RepaintManager;
 
 import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.dao.oracle.OracleNoticeDao;
-import com.newlecture.web.entity.Notice;
 
-@WebServlet("/notice/reg")
-public class RegContrller extends HttpServlet{
-	
+@WebServlet("/notice/del-ajax")
+public class DelAjaxController extends HttpServlet {
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("../WEB-INF/view/notice/reg.jsp").forward(request, response);
-		
-		
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		
-		Notice notice = new Notice();
-		notice.setTitle(title);
-		notice.setContent(content);
+		Integer id = Integer.parseInt(request.getParameter("id"));
 		
 		NoticeDao noticeDao = new OracleNoticeDao();
-	
+		
 		int result = 0;
 		
+		
 		try {
-			result = noticeDao.insert(notice);
-			
+			result = noticeDao.delete(id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,12 +36,15 @@ public class RegContrller extends HttpServlet{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 
 		
-		if(result != 1)
-			response.sendRedirect("error");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/txt;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		if(result != -1)
+			out.write("ok");
 		else
-			response.sendRedirect("list");
-		
+			out.write("fail");
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.newlecture.web.controller.notice;
+package com.newlecture.web.controller.admin.notice;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.dao.oracle.OracleNoticeDao;
 import com.newlecture.web.entity.Notice;
 
-@WebServlet("/notice/edit")
+@WebServlet("/admin/notice/edit")
 public class EditController extends HttpServlet {
 	
 	@Override

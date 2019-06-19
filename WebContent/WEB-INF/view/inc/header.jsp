@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
     <header id="header">
         <div class="content-box">
@@ -24,7 +26,7 @@
                         <label>과정검색</label>
                         <input type="text">
                         <input type="submit" value="검색">
-                        </from>
+                        </form>
                 </section>
 
 
@@ -32,7 +34,14 @@
                     <h1 class="d-none">회원메뉴</h1>
                     <ul>
                         <li>HOME</li>
-                        <li>로그인</li>
+                        <li>
+                        <c:if test="${empty id}">
+                        <a href="/member/login">로그인</a>
+                        </c:if>
+                        <c:if test="${not empty id}">
+                        <a href="/member/logout">로그아웃</a>
+                        </c:if>
+                        </li>
                         <li>회원가입</li>
                     </ul>
                 </nav>

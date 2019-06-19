@@ -1,4 +1,4 @@
-<%@page import="com.newlecture.web.dao.file.FileNoticeDao"%>
+
 <%-- <%@page import="com.newlecture.web.dao.NoiceDao"%> --%>
 <%@page import="java.util.Scanner"%>
 <%@page import="com.newlecture.web.entity.Notice"%>
@@ -44,7 +44,7 @@
 
 <body>
     <!--header block ----------------------------------------------------------------------------------------------------------------- -->
-    <jsp:include page="../inc/header.jsp" />
+    <jsp:include page="../../inc/header.jsp" />
 
     <!--visual block ----------------------------------------------------------------------------------------------------------------- -->
 
@@ -59,12 +59,10 @@
     <!-- flexible box layout: 반응형 사용을 위해 존재.수직이든 수평이든 뭐를 둬도 알아서 배치. static은 수직으로 알아서 배치하지만 수평은 안해쥼 axis(중심선) -->
     <div id="body">
         <div class="content-box">
-            <jsp:include page="../inc/aside.jsp" />
-            
-            <main>
-
-                <section>
-                    <h1>공지사항1</h1>
+            <jsp:include page="../../inc/aside.jsp" />
+			  <main>
+				 <section>
+                    <h1>공지사항</h1>
 
                     <section id="breadcrumb">
                         <h1 class="d-none">경로</h1>
@@ -75,30 +73,45 @@
                         </ol>
                     </section>
                     <section>
-	                    	<h1>공지사항 내용</h1>
-                    	<form action="reg" method="post">
-	                    	<table>
-	                    		<tbody>
-	                    			<tr>
-	                    				<th>제목</th>
-	                    				<td><input name="title" type="text"></td>
-	                    			</tr>
-	                    			<tr>
-	                    				<th>내용</th>
-	                    				<td><textarea name="content"></textarea></td>
-	                    			</tr>
-	                    		</tbody>
-	                    	</table>
-	                    	<div>
-	                    		<input type="submit"value="저장">
-	                    		<a href="list">취소</a>
-	                    	</div>
-                    	</form>
+                    	<h1>공지사항 내용</h1>
+                    	<table>
+                    		<tbody>
+                    			<tr>
+                    				<th>제목</th>
+                    				<td>${notice.title}</td>
+                    			</tr>
+                    			<tr>
+                    				<th>작성일</th>
+                    				<td>${notice.regDate}</td>
+                    			</tr>
+                    			<tr>
+                    				<th>첨부파일</th>
+                    				<td>
+                    				<c:forEach var="file" items="${noticeFiles}">
+                    				<a href="/upload/${file.name}" download>${file.name}</a>
+                    				</c:forEach>
+                    				</td>
+                    			</tr>
+                    			<tr>
+                    				<th>내용</th>
+                    				<td>${notice.content}</td>
+                    			</tr>
+                    		</tbody>
+                    	</table>
+                    	<div>
+                    		<a href="edit?id=${notice.id}">수정</a>
+                    		<a href="del?id=${notice.id}">삭제</a>
+                    	</div>
                     </section>
-                    
-                    
                 </section>
-            </main>
+                <section>
+                   <h1></h1>
+                   <ul>
+                      <li><span>이전글</span><a href="detail?id=${prev.id}">${prev.title}</a></li>
+                      <li><span>다음글</span><a href="detail?id=${next.id}">${next.title}</a></li>
+                   </ul>
+                </section>
+			</main>
 
         </div>
     </div>
@@ -108,8 +121,12 @@
 
     <!--footer      block ----------------------------------------------------------------------------------------------------------------- -->
 
-	<jsp:include page="../inc/footer.jsp" />
-	
+	<jsp:include page="../../inc/footer.jsp" />
+
+
+
+
+
 </body>
 
 </html>
