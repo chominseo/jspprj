@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 
-<script src="ex1-javascript.js"></script>
+	<script src="ex1-javascript.js"></script>
 
-<script>
+	<script>
 		/*var html = "<h1>안녕하세요</h1>";
 		document.write(html);
 		hi.innerText = html;
-		
+
 		window.onload = function(){
 			var btnPrint = document.getElementById("btn-print");
 			btnPrint.onclick = printResult;
@@ -27,26 +28,276 @@
 
 		}*/
 
-		
 
 
-	
-</script>
+
+ 
+	</script>
 
 
 
 </head>
+
 <body>
+	<section id="ex14">
+		<h1 class="d-none">탭콘텐츠</h1>
+		<style>
+			#ex14 ul, 
+			#ex14 li
+			{
+				padding: 0px;
+				margin: 0px;
+			}
+			#ex14 li{
+				list-style-type: none;
+			}
+			#ex14 .d-none{
+				display: none;
+			}
+			#ex14 .current{
+				display: block;
+			}
+
+			html{
+				scroll-behavior: smooth;
+			}
+			#ex14 .tab-menu-list{
+				display: flex;
+			}
+			#ex14 .tab-menu-list li{
+				width: 100px;
+				height: 30px;
+				border: 1px solid gray;
+			}
+			#ex14 .content-list div{
+				width: 100%;
+				min-height: 500px;
+				border: 1px solid gray;
+			}
+		</style>
+		<ul class="tab-menu-list">
+			<li><a href="#tab1">탭1</a></li>
+			<li><a href="#tab2">탭2</a></li>
+			<li><a href="#tab3">탭3</a></li>
+		</ul>
+		<div class="content-list">
+			<div id="tab1" class="d-none">
+				<h2>1번 콘텐츠</h2>
+			</div>
+			<div id="tab2" class="d-none">
+				<h2>2번 콘텐츠</h2>
+			</div>
+			<div id="tab3" class="d-none">
+				<h2>3번 콘텐츠</h2>
+			</div>
+		</div>
+	</section>
+	
+	<section id="ex13">
+		<style>
+			#ex13 ul, 
+			#ex13 li{
+				padding: 0px;
+				margin: 0px;
+			}
+			#ex13 li{
+				list-style-type: none;
+			}
+			#ex13 img{
+				vertical-align: middle;
+			}
+			#ex13 .d-none{
+				display: none;
+			}
+			#ex13 .img-list{
+				display: flex;
+				width: 446px;
+				height: 156px;
+				border: 1px solid red;
+				--overflow: hidden;
+				position: relative;
+	
+			}
+			#ex13 .img-list li{
+				position: absolute;
+				top: 0px;
+				transition: 1s;
+			}
+			#ex13 .img-list li.left{
+				left: -100%;				
+			}
+			#ex13 .img-list li.center{
+				left: 0%;			
+			}
+			#ex13 .img-list li.right{
+				left: 100%;	
+			}
+		</style>
+		<h1 class="d-none">케러셀</h1>
+		<ul class="img-list">
+			<li class="left"><img src="https://www.jhta.co.kr/data/banner/1553233863_d40636f83553ba9b011b652294af52ae.jpg"></li>
+			<li class="center"><img src="https://www.jhta.co.kr/data/banner/1559723179_98b19fef89e671b80884f77a2ff91653.jpg"></li>
+			<li class="right"><img src="https://www.jhta.co.kr/data/banner/1559024392_7cdec471473eec512c241ab4726526d0.jpg"></li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<div class="prev-button">이전</div>
+		<div class="next-button">다음</div>
+
+		
+	</section>
+	<section id="ex12">
+		<style>
+		#ex12 .container{
+			width:700px;
+			height: 500px;
+			background: yellow;
+			border:1px solid gray;         
+			position: relative;
+		}
+	
+		#ex12 .container>div{
+			width:100px;
+			height: 100px;
+			border:1px solid black;
+			background: #fff;
+			position: absolute;
+	
+			left:0px;
+			top:0px;
+
+			transition: 500ms;
+		}
+		</style>
+		<div>
+			<input class="go-button" type="button" value="go" >
+		</div>
+		<div class="container">         
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+		</div>
+	</section>	
+	<section id="ex11">
+		<style>
+			@keyframes slide-open{
+				from{
+					transform: scale(1,1);
+				}
+				50%{
+					transform: rotate(45deg);
+				}
+				to{
+					transform: scale(2,2);
+				}
+			}
+			.container{
+				width:500px;
+				height: 300px;
+				border:1px solid gray;
+				position: relative;
+			}
+			.box{
+				width:100px;
+				height: 100px;
+				background:blue;
+				position:absolute;
+				left:0px;
+				top:0px;
+				transform-origin: left top;
+			}
+			.ani-slide-open{
+				animation: slide-open 1s;
+				animation-iteration-count: 3;
+				animation-direction: alternate-reverse;
+
+			}
+		</style>
+		<div>
+			<input class="del-button" type="button" value="삭제">
+		</div>
+		<div class="container">
+			<div class="box"></div>
+		</div>
+		
+	</section>
+	<!-- 애니메이션 -->
+	<section id="ex10">
+			<div>
+			   <input type="button" value="내용보기">
+			</div>
+			<div class="dialog" >
+			   <div class="screen"></div>
+			   <div class="content">
+				  안녕하세요<br >
+				  오늘도 자바스크립트를<br >
+	  
+			   </div>         
+			</div>
+			<style>
+			   .dialog{
+				  display: block;
+				  height: 0%;
+				  width: 100%;
+				  left: 0px;
+				  top: 0px;
+				  position: fixed;
+				  z-index: 999;
+				  overflow: hidden;
+				  }
+	  
+			   .dialog .screen   {
+				  height: inherit;
+				  width: inherit;
+				  background: #000;
+				  opacity: 0;
+				  transition: 1s opacity;
+				  
+			   }
+	  
+			   .dialog .content{
+				  position: fixed;
+				  left: 100px;
+				  top: 0px;
+				  background: #e9e9e9;
+				  display: none;
+	  
+			   }
+			   
+			   .dialog.show{
+				  --display: block;
+				  height: 100%;
+			   }
+			   .dialog.show .screen{
+				  opacity: 0.7;
+			   }
+	  
+			   .dialog.show .content{
+				  display: block;
+				  transition-delay: 1.5s display;
+			   }
+	  
+			</style>
+		 </section>
+
+
+
 	<!-- 애니메이션 -->
 	<section id="ex9">
 		<style>
-			.stage{
+			.stage {
 				width: 700px;
 				height: 500px;
 				border: 1px solid gray;
 				position: relative;
 			}
-			.ball{
+
+			.ball {
 				left: 0px;
 				top: 0px;
 				width: 100px;
@@ -55,21 +306,24 @@
 				--border-radius: 50px;
 				position: absolute;
 				transform: rotate(0deg);
-				transition: 1s ;
+				transition: 1s;
 			}
-			.note{
+
+			.note {
 				width: 100px;
 				height: 150px;
 				border: 1px solid #e9e9e9;
 				box-shadow: 1px 1px 1px #999;
 				position: relative;
 			}
-			.note .content{
+
+			.note .content {
 				width: 100%;
 				height: 100%;
 				background: yellow;
 			}
-			.note .cover{
+
+			.note .cover {
 				width: 100%;
 				height: 100%;
 				background: pink;
@@ -80,7 +334,8 @@
 				transform-origin: left top;
 				transition: 500ms;
 			}
-			.note:hover .cover{
+
+			.note:hover .cover {
 				transform: rotate(0deg);
 				transform-origin: top;
 				top: -100px;
@@ -89,8 +344,8 @@
 			}
 		</style>
 		<div>
-		<input class="start" type="button" value="시작">	
-		<input class="pause" type="button" value="정지">
+			<input class="start" type="button" value="시작">
+			<input class="pause" type="button" value="정지">
 		</div>
 		<div class="note-list">
 			<div class="note">
@@ -111,14 +366,14 @@
 
 		<input type="file" name="file" style="display: none">
 		<input type="button" value="파일선택">
-		
+
 	</section>
 	<!-- 공지사항 조작하기 -->
 	<section id="ex7">
 		<div>
 			<input class="btn-load" type="button" value="로드">
 		</div>
-		
+
 		<table class="notice" border="1">
 			<thead>
 				<tr>
@@ -130,7 +385,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+
 			</tbody>
 		</table>
 	</section>
@@ -146,13 +401,13 @@
 			<section></section>
 		</li>
 	</ul>
-	
+
 
 
 	<!-- 노드 조작하기 -->
 	<section id="ex6">
 		<style>
-			#ex6 .box{
+			#ex6 .box {
 				width: 100px;
 				height: 100px;
 				border: 1px solid blue;
@@ -162,7 +417,7 @@
 			<input class="btn-add-text" type="button" value="텍스트 추가">
 			<input class="btn-add-elment" type="button" value="엘리먼트추가">
 		</div>
-		
+
 		<div class="container">
 
 		</div>
@@ -173,8 +428,10 @@
 	<!-- 속성다루기 -->
 	<section id="ex5">
 		<select class="img-select">
-			<option value="https://cdn.pixabay.com/photo/2018/06/01/20/38/country-road-3447111_960_720.jpg">이미지1</option>
-			<option value="https://t1.kakaocdn.net/friends/kfo-common/pcrtn/brand/brand_wearefriends1_171130.jpg">이미지2</option>
+			<option value="https://cdn.pixabay.com/photo/2018/06/01/20/38/country-road-3447111_960_720.jpg">이미지1
+			</option>
+			<option value="https://t1.kakaocdn.net/friends/kfo-common/pcrtn/brand/brand_wearefriends1_171130.jpg">이미지2
+			</option>
 			<option value="https://i.ytimg.com/vi/XQTfuoGax4g/maxresdefault.jpg">이미지2</option>
 		</select>
 		<input class="btn3" type="button" value="변경">
@@ -200,7 +457,7 @@
 
 	<section id="ex3">
 		<style>
-			#ex3 .view{
+			#ex3 .view {
 				width: 500px;
 				height: 300px;
 				border: 1px solid red;
@@ -209,7 +466,7 @@
 		<div>
 			<div>
 				hello
-				hi      ok
+				hi ok
 			</div>
 			<pre>
 				hello
@@ -221,21 +478,21 @@
 			<input id="btn-ex3" type="button" value="클릭">
 		</div>
 		<iframe class="view" id="view" src="frame-win.html"></iframe>
-		
+
 	</section>
 
 	<section id="ex2">
 		<div>
-				남은시간 <span id="count-span">60</span>초
-				<input id="countdown-button" type="button" value="카운트 시작"/>
+			남은시간 <span id="count-span">60</span>초
+			<input id="countdown-button" type="button" value="카운트 시작" />
 		</div>
 	</section>
 
-	<section id="ex1">a&lt;b 
+	<section id="ex1">a&lt;b
 		<!-- <h1 id="hi" onclick="alert('hello');"></h1> -->
 		<!-- lt=엔티티 &; 엔티티 레퍼런스 -->
-		<input type="text" id="x-input" >+<input type="text" id="y-input">
-		<input type="button" value="계산하기" id="btn-result"/>
+		<input type="text" id="x-input">+<input type="text" id="y-input">
+		<input type="button" value="계산하기" id="btn-result" />
 	</section>
 
 	<script>
@@ -246,7 +503,7 @@
 		alert(x == undefined);
 		alert(x.length);
 		var nums = new Array();
-		
+
 		nums.push(5);
 		alert(nums);
 
@@ -266,7 +523,7 @@
 		alert(nums);
 
 		var nums = new Array();
-		
+
 		nums[0] = 5;
 		alert(nums);
 
@@ -274,7 +531,7 @@
 		alert(nums);
 
 		nums[2] = 21;
-		alert(nums); 
+		alert(nums);
 
 		var nums = new Array(5);
 		alert(nums);
@@ -283,7 +540,7 @@
 		alert(nums);
 
 		var nums = new Array(5,10,21,"hello",new Array(2,3,4));
-		
+
 		alert(nums[4][1]);
 
 		var nums = new Array(5,10,21,"hello");
@@ -316,14 +573,14 @@
 					];
 
 					alert(exams[0].eng);
-			
+
 		var kor = 1;
 		var eng = 2, math = 3;
 
 		var sum = eval("kor+eng+math");
 
 		alert(sum);
-		
+
 
 		var date = ("({\"kor\":30,\"eng\":40,\"math\":50})");
 		alert(data.kor);
@@ -331,9 +588,9 @@
 		var declare = "var kor = 1; var eng = 2, math = 3;";
 		eval(declare);
 		var sum = eval("kor+eng+math");
-		
+
 		alert(sum);
-		
+
 		1. 값(데이터),
 		2. 연산자,
 		3. 제어구조,
@@ -341,7 +598,7 @@
 		5. 모듈화(함수-구조적인, 캡슐-객체지향)
 		6. 컬렉션
 		7. 스트림 API
-		
+
 
 		var json = "{\"kor\":30,\"eng\":40,\"math\":50}";
 		var data = JSON.parse(json);
@@ -360,7 +617,7 @@
 
 		var ar = ["철수","영희","맹구","동천"];
 
-		
+
 		for(var i=0; i<4; i++)
 		alert(ar[i]);
 
@@ -373,7 +630,7 @@
 		var ar = ["철수","영희","맹구","동천"];
 		for(i in ar)
 			console.log(ar[i]);
-		
+
 		var ar = {"kor":30,"eng":40,"math":50};
 		for(var k in ar)
 			console.log(ar[k]);
@@ -436,7 +693,7 @@
 
 			var a;
 			a++;
-			
+
 			//alert(a);
 			alert(window.a);
 		}
@@ -454,7 +711,7 @@
 
 		function f1(){
 			var x = 2;
-		
+
 			function f2(){
 				var x = 1;
 				console.log(x);
@@ -473,16 +730,17 @@
 			if(isNaN(sum))
 				alert("입력 값이 유효하지 않습니다.");
 
-			console.log(parseInt("a123"));   
+			console.log(parseInt("a123"));
 			console.log(parseInt("123a"));*/
 
-		
 
 
-	
-		
+
+
+
 
 	</script>
-	
+
 </body>
+
 </html>

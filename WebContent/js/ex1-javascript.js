@@ -6,7 +6,131 @@
 5. Ajax
 6. HTML5 API
 */
-// --- 애니메이션 -------------ex9--------------------------------
+window.addEventListener("load", function(){
+    var section = document.querySelector("#ex14");
+    var tabMenuList = section.querySelector(".tab-menu-list");
+    var contentList = section.querySelector(".content-list");
+ 
+
+    tabMenuList.addEventListener("click", function(e){
+        if(e.target.tagName != "A")
+            return;
+        e.preventDefault();
+
+        var contentId = e.target.href.split("#")[1];
+
+        for(var i=0; i<contentList.children.length; i++)
+             contentList.children[i].classList.remove("current");
+
+        var contentDiv = contentList.querySelector("#"+contentId);
+        contentDiv.classList.add("current");
+    
+    });
+
+});
+window.addEventListener("load", function(){
+    var section = document.querySelector("#ex13");
+    var prevButton = section.querySelector(".prev-button");
+    var nextButton = section.querySelector(".next-button");
+    
+    var imgList = section.querySelector(".img-list");
+    var lis = imgList.children;
+    
+    nextButton.onclick = function(){
+        var centerLi = imgList.querySelector(".center");
+
+
+
+        
+        var rightLi = centerLi.nextElementSibling;
+        var leftLi = centerLi.previousElementSibling;
+
+        leftLi.classList.remove("left");
+        leftLi.classList.add("center");
+        
+        centerLi.classList.remove("center");
+        centerLi.classList.add("left");
+
+        rightLi.classList.remove("right");
+        rightLi.classList.add("center");
+        
+    };
+
+    prevButton.onclick = function(){
+    };
+
+});
+window.addEventListener("load", function(){
+    var section = document.querySelector("#ex12");
+    var goButton = section.querySelector(".go-button");
+    var container = section.querySelector(".container");
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      };
+
+    goButton.onclick = function(e){
+        
+        //var boxes = container.querySelectorAll("div");
+        var boxes = container.children;
+      
+        boxes[0].style.left = getRandomInt(600)+"px";
+        boxes[0].style.top = getRandomInt(400)+"px";
+
+    };
+
+});
+window.addEventListener("load", function(){
+    var section = document.querySelector("#ex11");
+    var delButton = section.querySelector(".del-button");
+    var box = section.querySelector(".box");
+
+    box.addEventListener("animationend", function(){
+        box.parentElement.remove();
+    });
+
+    delButton.onclick = function(){
+        box.classList.add("ani-slide-open");
+        
+    };
+});
+
+// --- 애니메이션 -------------ex10--------------------------------
+window.addEventListener("load", function(){
+    var section = document.querySelector("#ex10"); 
+    var showButton = section.querySelector("input");
+    var dialog = section.querySelector(".dialog");
+    var screen = section.querySelector(".screen");
+    var content = dialog.querySelector(".content");
+   
+    showButton.onclick = function(){
+        dialog.classList.add("show");
+        
+        //dialog.style.display = "block";
+    
+        //setTimeout(function(){
+            //screen.style.opacity = 0.7;
+        //}, 10);
+    };
+
+    screen.onclick = function(){
+        dialog.classList.remove("show");
+            
+    };
+
+    screen.addEventListener("transitionend", function(){
+        content
+        .style
+        .display = "block";
+
+    });
+
+
+
+});
+
+
+// --- 트랜지션 -------------ex9--------------------------------
 window.addEventListener("load", function(){
     var section = document.querySelector("#ex9");
     var startButton = section.querySelector(".start");
@@ -111,9 +235,14 @@ window.addEventListener("load", function () {
         request.open("GET", "/notice/list-ajax?p=1", false);
         request.send();
 
+        var data = "x=1&y=2x=23&y=34";
+        var request = new XMLHttpRequest();
+        request.open("POST", "/notice/reg", false);
+        request.send(dada);
+
         var json = JSON.parse(request.responseText);
         
-      
+        
 
         //alert(json[0].title);
         //대체하기
@@ -375,3 +504,12 @@ window.addEventListener("load", function () {
         alert(x + y);
     };
 });
+
+
+
+
+
+
+
+
+

@@ -8,28 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%
-	/*
-	NoticeDao noticeDao = new FileNoticeDao();
-	List<Notice> notices = noticeDao.getList();
-	
-	List<Notice> notices = new ArrayList<>();
-	
-	FileInputStream fis = new FileInputStream(
-			"D:\\java\\workspace\\JSPPrj\\WebContent\\WEB-INF\\data\\notice-file.df");
-	Scanner fscan = new Scanner(fis);
-	
-	String line = "";
-	
-	while (fscan.hasNextLine()) {
-		line = fscan.nextLine();
-		Notice notice = new Notice(line.split(","));
-		notices.add(notice);
-	}
-	fscan.close();
-	fis.close();
-	*/
-%>
+
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -74,7 +53,7 @@
 				</section>
 				<section>
 					<h1>공지사항 내용</h1>
-					<form action="reg" method="post" enctype="multipart/form-data">
+					<form action="reg" method="post" >
 						<table>
 							<tbody>
 								<tr>
