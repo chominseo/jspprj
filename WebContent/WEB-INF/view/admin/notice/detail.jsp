@@ -1,7 +1,7 @@
 
 <%-- <%@page import="com.newlecture.web.dao.NoiceDao"%> --%>
 <%@page import="java.util.Scanner"%>
-<%@page import="com.newlecture.web.entity.Notice"%>
+<%@page import="com.newlecture.web.entity.Info"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
